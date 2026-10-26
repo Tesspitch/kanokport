@@ -34,7 +34,7 @@ export function VideoSection() {
         </div>
         <div className="video-reveal overflow-hidden rounded-[1.8rem] border border-white/10 bg-black shadow-[0_30px_100px_rgba(0,0,0,.4)]">
           <div className="group relative aspect-video bg-black">
-            <video ref={video} className="h-full w-full" src="/assets/presentation.mp4" preload="metadata" playsInline
+            <video ref={video} className="h-full w-full" src="/assets/presentation.mp4" preload="auto" playsInline
               onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)} onTimeUpdate={(e) => setCurrent(e.currentTarget.currentTime)}
               onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onError={() => setError(true)} />
             {error && <div className="absolute inset-0 grid place-items-center p-6 text-center text-white/70">ไม่สามารถโหลดวิดีโอได้ กรุณาตรวจสอบไฟล์สื่อ</div>}
