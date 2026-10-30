@@ -9,7 +9,7 @@ export function Closing() {
         <h2 className="font-display text-5xl font-semibold leading-tight sm:text-7xl">ขอบพระคุณที่ร่วมเปิดอ่าน<br />เรื่องราวแห่งความภาคภูมิใจ</h2>
         <p className="mx-auto mt-7 max-w-xl text-white/65">นางกนกกรณ์ แก้วประกอบ<br />ครู วิทยฐานะ ครูชำนาญการ · โรงเรียนบัวขาว</p>
         <nav className="mt-11 flex flex-wrap justify-center gap-3" aria-label="ทางลัดส่วนท้าย">
-          <a className="closing-link" href="#top">กลับด้านบน</a><a className="closing-link" href="#video">ชมวิดีโอ</a><a className="closing-link" href="#ebook">เปิด E-Book</a>
+          <a className="closing-link" href="#top">กลับด้านบน</a><a className="closing-link" href="#video">ชมวิดีโอ</a><a className="closing-link" href="#ebook">เปิด E-Book</a><a className="closing-link" href="#teaching">สื่อการสอน</a><a className="closing-link" href="#portfolio-examples">ตัวอย่าง Portfolio</a>
         </nav>
       </div>
     </footer>

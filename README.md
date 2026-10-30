@@ -27,6 +27,12 @@ npm run preview
 - `public/assets/portfolio-cover.png` — หน้าปกที่เรนเดอร์จาก PDF ต้นฉบับ
 - `public/assets/presentation.mp4` — วิดีโอนำเสนอจริง
 - `public/assets/portfolio.pdf` — E-Book ฉบับจริง 22 หน้า
+- `public/assets/portfolio-examples/1.pdf` ถึง `7.pdf` — ตัวอย่าง Portfolio สำหรับเครื่องอ่าน E-Book
+
+## Sections เพิ่มเติม
+
+- สื่อการสอน: การ์ด YouTube 6 รายการจากลิงก์ที่ให้มา
+- ตัวอย่าง Portfolio: เลือกเล่ม 1–7 แล้วเปิดอ่านด้วย PDF page-flip reader เดียวกัน
 
 ทุกไฟล์ทำงานแบบ local-only ไม่มี backend, database, SSR หรือการเชื่อมต่อ repository
 # kanokport

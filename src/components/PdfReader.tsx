@@ -32,7 +32,7 @@ PdfPage.displayName = 'PdfPage'
 
 type FlipRef = { pageFlip: () => { flipNext: () => void, flipPrev: () => void, turnToPage: (page: number) => void } }
 
-export function PdfReader() {
+export function PdfReader({ src = '/assets/portfolio.pdf', portrait = false }: { src?: string, portrait?: boolean }) {
   const shell = useRef<HTMLDivElement>(null)
   const book = useRef<FlipRef | null>(null)
   const [pdf, setPdf] = useState<PDFDocumentProxy | null>(null)
@@ -42,9 +42,9 @@ export function PdfReader() {
   const [fullscreen, setFullscreen] = useState(false)
   const [error, setError] = useState('')
   const load = useCallback(async () => {
-    try { setPdf(await getDocument('/assets/portfolio.pdf').promise) }
+    try { setPdf(await getDocument(src).promise) }
     catch { setError('ไม่สามารถเปิด E-Book ได้ กรุณาลองดาวน์โหลดไฟล์แทน') }
-  }, [])
+  }, [src])
   useEffect(() => { load() }, [load])
   useEffect(() => {
     const update = () => setMobile(window.innerWidth < 768)
@@ -61,10 +61,10 @@ export function PdfReader() {
     book.current?.pageFlip().turnToPage(target - 1)
     setPage(target)
   }
-  if (error) return <div className="reader-state">{error}<a href="/assets/portfolio.pdf" download className="mt-4 underline">ดาวน์โหลด PDF</a></div>
+  if (error) return <div className="reader-state">{error}<a href={src} download className="mt-4 underline">ดาวน์โหลด PDF</a></div>
   if (!pdf) return <div className="reader-state"><span className="loader" />กำลังเปิดแฟ้มสะสมผลงาน…</div>
-  const bookWidth = fullscreen ? Math.min(window.innerWidth - 96, 1500) : 720
-  const bookHeight = fullscreen ? Math.min(window.innerHeight - 170, 850) : 405
+  const bookWidth = fullscreen ? Math.min(window.innerWidth - 96, 1500) : (portrait ? 480 : 720)
+  const bookHeight = fullscreen ? Math.min(window.innerHeight - 170, 850) : (portrait ? 680 : 405)
   return (
     <div ref={shell} className="reader-shell">
       <div className="reader-toolbar">
@@ -74,11 +74,11 @@ export function PdfReader() {
           <span className="w-12 text-center text-xs text-white/60">{Math.round(zoom * 100)}%</span>
           <button className="tool-btn" onClick={() => setZoom((z) => Math.min(1.5, z + .25))} aria-label="ขยาย">＋</button>
           <button className="tool-btn" onClick={() => shell.current?.requestFullscreen()} aria-label="เต็มหน้าจอ">⛶</button>
-          <a className="tool-btn" href="/assets/portfolio.pdf" download aria-label="ดาวน์โหลด">⇩</a>
+          <a className="tool-btn" href={src} download aria-label="ดาวน์โหลด">⇩</a>
         </div>
       </div>
       <div className={`book-stage ${page === 1 && !mobile ? 'cover-mode' : ''}`} style={{ transform: fullscreen ? 'none' : `scale(${zoom})` }}>
-        <HTMLFlipBook key={`${mobile ? 'mobile' : 'desktop'}-${fullscreen ? 'fullscreen' : 'windowed'}`} ref={book as never} width={bookWidth} height={bookHeight} size="stretch" minWidth={280} maxWidth={bookWidth} minHeight={158} maxHeight={bookHeight} showCover={!mobile} mobileScrollSupport={true} usePortrait={mobile} maxShadowOpacity={.35} drawShadow={!mobile} flippingTime={700} className="flip-book" style={{}} startPage={0} startZIndex={0} autoSize={true} clickEventForward={true} useMouseEvents={true} swipeDistance={24} showPageCorners={!mobile} disableFlipByClick={false} onFlip={(e) => setPage(e.data + 1)}>
+        <HTMLFlipBook key={`${mobile ? 'mobile' : 'desktop'}-${portrait ? 'portrait' : 'landscape'}-${fullscreen ? 'fullscreen' : 'windowed'}`} ref={book as never} width={bookWidth} height={bookHeight} size="stretch" minWidth={280} maxWidth={bookWidth} minHeight={158} maxHeight={bookHeight} showCover={!mobile} mobileScrollSupport={true} usePortrait={mobile || portrait} maxShadowOpacity={.35} drawShadow={!mobile} flippingTime={700} className="flip-book" style={{}} startPage={0} startZIndex={0} autoSize={true} clickEventForward={true} useMouseEvents={true} swipeDistance={24} showPageCorners={!mobile} disableFlipByClick={false} onFlip={(e) => setPage(e.data + 1)}>
           {Array.from({ length: pdf.numPages }, (_, i) => <PdfPage key={i + 1} pdf={pdf} number={i + 1} scale={zoom} />)}
         </HTMLFlipBook>
       </div>
