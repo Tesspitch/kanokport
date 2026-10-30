@@ -52,6 +52,9 @@
   .portfolio-modal-heading { @apply flex items-center justify-between border-b border-white/10 bg-[#211c34] px-4 py-3 text-white sm:px-6; }
   .portfolio-modal-panel .reader-shell { @apply min-h-0 flex-1 overflow-auto rounded-none border-0 shadow-none; }
   .portfolio-modal-panel .book-stage { min-height: 0; }
+  .share-btn { @apply rounded-full border border-lavender/25 bg-white px-5 py-2.5 text-sm font-medium text-iris transition hover:-translate-y-0.5 hover:border-lavender hover:shadow-lg; }
+  .share-btn-primary { @apply border-lavender bg-lavender text-white hover:bg-iris; }
+  .qr-card { @apply flex flex-col items-center gap-3 rounded-2xl border border-lavender/15 bg-[#f8f4ef] p-4 text-center text-xs text-iris/60; }
   .skip-link { @apply fixed left-4 top-3 z-[100] -translate-y-20 rounded-lg bg-iris px-4 py-2 text-white transition focus:translate-y-0; }
   .loader { @apply mb-4 h-9 w-9 animate-spin rounded-full border-2 border-white/20 border-t-white/80; }
 }
