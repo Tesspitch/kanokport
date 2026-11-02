@@ -29,7 +29,6 @@ export function VideoSection() {
       <div className="section-inner">
         <p className="eyebrow text-[#d8c08d]">01 — Presentation</p>
         <div className="mb-9 grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
-          <h2 className="section-title max-w-3xl">วิดีโอนำเสนอ<br /><span className="text-[#b8b0dc]">เส้นทางแห่งวิชาชีพครู</span></h2>
           <p className="max-w-md text-white/60">รับชมวิดีโอนำเสนอประกอบแฟ้มสะสมผลงานฉบับจริง</p>
         </div>
         <div className="video-reveal overflow-hidden rounded-[1.8rem] border border-white/10 bg-black shadow-[0_30px_100px_rgba(0,0,0,.4)]">
